@@ -81,6 +81,12 @@ export class RuralProducerController {
   }
 
   async dashboard(request: Request, response: Response) {
-
+    try {
+      const retorno = await this.#servico.dashboard()
+      return response.json(retorno)
+    } catch (error) {
+      console.log('dashboard controller error: ', error)
+      return response.status(500).send(error)
+    }
   }
 }
